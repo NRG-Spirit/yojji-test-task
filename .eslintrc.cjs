@@ -20,5 +20,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react', 'prettier'],
   rules: {
     'react/react-in-jsx-scope': 0,
+    'react/no-array-index-key': 0,
+    'react/destructuring-assignment': 0,
   },
 };

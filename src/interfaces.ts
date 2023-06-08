@@ -1,5 +1,24 @@
+interface ICloseApproachData {
+  close_approach_date: string;
+  close_approach_date_full: string;
+  epoch_date_close_approach: number;
+  miss_distance: {
+    astronomical: number;
+    lunar: number;
+    kilometers: number;
+    miles: number;
+  };
+  orbiting_body: string;
+  relative_velocity: {
+    kilometers_per_second: number;
+    kilometers_per_hour: number;
+    miles_per_hour: number;
+  };
+}
+
 export interface INeo {
   absolute_magnitude_h: number;
+  close_approach_data: ICloseApproachData[];
   estimated_diameter: {
     kilometers: {
       estimated_diameter_min: number;
