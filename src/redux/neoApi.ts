@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { INeoResponse } from '../interfaces';
 
 interface IParams {
-  startDate: string;
-  endDate: string;
+  date: string;
 }
 
 const $host: string | undefined = import.meta.env.VITE_API_URL;
@@ -12,12 +12,12 @@ export const neoApi = createApi({
   reducerPath: 'neoApi',
   baseQuery: fetchBaseQuery({ baseUrl: $host }),
   endpoints: (build) => ({
-    searchNeo: build.query<any, IParams>({
+    searchNeo: build.query<INeoResponse, IParams>({
       query: (args: IParams) => ({
         url: '',
         params: {
-          start_date: args.startDate,
-          end_date: args.endDate,
+          start_date: args.date,
+          end_date: args.date,
           api_key: $key,
         },
       }),
