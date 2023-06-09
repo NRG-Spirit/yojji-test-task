@@ -42,6 +42,8 @@ function Element(props: IProps) {
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: '.2rem',
+    paddingBottom: '.2rem',
   }));
 
   return (

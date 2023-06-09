@@ -6,8 +6,12 @@ export default function Header() {
   return (
     <AppBar position="static" color="primary">
       <Box sx={{ display: 'flex' }} m={2}>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/task">Task</NavLink>
+        <NavLink to="/" style={{ color: 'white', marginRight: '.5rem' }}>
+          Home
+        </NavLink>
+        <NavLink to="/task" style={{ color: 'white' }}>
+          Task
+        </NavLink>
       </Box>
     </AppBar>
   );
