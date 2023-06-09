@@ -1,4 +1,5 @@
-import styles from './Element.module.css';
+import { Grid, Paper } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { INeoList } from '../../interfaces';
 
 interface IProps {
@@ -31,22 +32,38 @@ function Element(props: IProps) {
     );
   })[0];
 
+  const Item = styled(Paper)(() => ({
+    backgroundColor:
+      props.highlight <= amountHazardousNeo && amountHazardousNeo > 0
+        ? 'red'
+        : '#fff',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }));
+
   return (
-    <div
-      className={
-        props.highlight <= amountHazardousNeo && amountHazardousNeo > 0
-          ? styles.wrapper_highlight
-          : styles.wrapper
-      }
-    >
-      <div className={styles.cell}>{keys[0]}</div>
-      <div className={styles.cell}>
-        {maxDiameter.estimated_diameter.kilometers.estimated_diameter_max}
-      </div>
-      <div className={styles.cell}>{amountHazardousNeo}</div>
-      <div className={styles.cell}>{closestNeo.name}</div>
-      <div className={styles.cell}>{fasterNeo.name}</div>
-    </div>
+    <Grid container>
+      <Grid xs={2} p={1}>
+        <Item>{keys[0]}</Item>
+      </Grid>
+      <Grid xs={3} p={1}>
+        <Item>
+          {maxDiameter.estimated_diameter.kilometers.estimated_diameter_max}
+        </Item>
+      </Grid>
+      <Grid xs={2} p={1}>
+        <Item>{amountHazardousNeo}</Item>
+      </Grid>
+      <Grid xs={2} p={1}>
+        <Item>{closestNeo.name}</Item>
+      </Grid>
+      <Grid xs={3} p={1}>
+        <Item>{fasterNeo.name}</Item>
+      </Grid>
+    </Grid>
   );
 }
 

@@ -1,6 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import styles from './HomePage.module.css';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import { CircularProgress, styled } from '@mui/material';
 import { useSearchNeoQuery } from '../../redux/neoApi';
 import { INeoList } from '../../interfaces';
 import Element from '../../components/Element/Element';
@@ -41,23 +44,40 @@ function HomePage() {
     return () => clearInterval(timerID);
   }, []);
 
+  const Item = styled(Paper)(() => ({
+    backgroundColor: '#618833',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }));
+
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.head}>
-        <div className={styles.cell}>Date</div>
-        <div className={styles.cell}>Max diameter of NEO</div>
-        <div className={styles.cell}>Number of potentially hazardous NEOs</div>
-        <div className={styles.cell}>Closest NEO</div>
-        <div className={styles.cell}>Fastest NEO</div>
-      </div>
-      <div className={styles.data}>
-        {neoList.length > 0 &&
-          neoList.map((el, idx) => {
-            return <Element element={el} key={idx} highlight={highlight} />;
-          })}
-      </div>
-      {isLoading && <div>Loading..</div>}
-    </div>
+    <Box sx={{ flex: '1 0 auto' }} mt={1}>
+      <Grid container>
+        <Grid xs={2} p={1}>
+          <Item>Date</Item>
+        </Grid>
+        <Grid xs={3} p={1}>
+          <Item>Max diameter of NEO</Item>
+        </Grid>
+        <Grid xs={2} p={1}>
+          <Item>Number of potentially hazardous NEOs</Item>
+        </Grid>
+        <Grid xs={2} p={1}>
+          <Item>Closest NEO</Item>
+        </Grid>
+        <Grid xs={3} p={1}>
+          <Item>Fastest NEO</Item>
+        </Grid>
+      </Grid>
+      {neoList.length > 0 &&
+        neoList.map((el, idx) => {
+          return <Element element={el} key={idx} highlight={highlight} />;
+        })}
+      {isLoading && <CircularProgress color="secondary" />}
+    </Box>
   );
 }
 
